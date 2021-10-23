@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build, Test and Analyze water-tracker app using the iOS Simulator for iPhone11
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
       - name: Checkout
