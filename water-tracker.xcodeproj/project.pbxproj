@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		729BE79827242F1E004949FA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729BE79627242F1E004949FA /* HealthKit.framework */; };
+		729BE79927242F1E004949FA /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729BE79727242F1E004949FA /* HealthKitUI.framework */; };
+		729BE79B27242F2B004949FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729BE79A27242F2B004949FA /* WidgetKit.framework */; };
 		72F981892722CC47002A052D /* water_trackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F981882722CC47002A052D /* water_trackerApp.swift */; };
 		72F9818B2722CC47002A052D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9818A2722CC47002A052D /* ContentView.swift */; };
 		72F9818D2722CC4A002A052D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F9818C2722CC4A002A052D /* Assets.xcassets */; };
@@ -36,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		729BE79627242F1E004949FA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		729BE79727242F1E004949FA /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
+		729BE79A27242F2B004949FA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		729BE79C27242F37004949FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		72F981852722CC47002A052D /* water-tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "water-tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F981882722CC47002A052D /* water_trackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = water_trackerApp.swift; sourceTree = "<group>"; };
 		72F9818A2722CC47002A052D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729BE79827242F1E004949FA /* HealthKit.framework in Frameworks */,
+				729BE79927242F1E004949FA /* HealthKitUI.framework in Frameworks */,
+				729BE79B27242F2B004949FA /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +85,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		729BE79527242F1E004949FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				729BE79A27242F2B004949FA /* WidgetKit.framework */,
+				729BE79627242F1E004949FA /* HealthKit.framework */,
+				729BE79727242F1E004949FA /* HealthKitUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		72F9817C2722CC47002A052D = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +102,7 @@
 				72F9819D2722CC4B002A052D /* water-trackerTests */,
 				72F981A72722CC4B002A052D /* water-trackerUITests */,
 				72F981862722CC47002A052D /* Products */,
+				729BE79527242F1E004949FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +119,7 @@
 		72F981872722CC47002A052D /* water-tracker */ = {
 			isa = PBXGroup;
 			children = (
+				729BE79C27242F37004949FA /* Info.plist */,
 				72F981882722CC47002A052D /* water_trackerApp.swift */,
 				72F9818A2722CC47002A052D /* ContentView.swift */,
 				72F9818C2722CC4A002A052D /* Assets.xcassets */,
@@ -430,9 +452,12 @@
 				DEVELOPMENT_TEAM = LUZWB47J6Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "water-tracker/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Water Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -460,9 +485,12 @@
 				DEVELOPMENT_TEAM = LUZWB47J6Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "water-tracker/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Water Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

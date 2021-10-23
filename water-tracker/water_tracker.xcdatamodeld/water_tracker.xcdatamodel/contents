@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="IntakeRecord" representedClassName="IntakeRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="types" maxCount="1" deletionRule="Nullify" destinationEntity="IntakeType" inverseName="usages" inverseEntity="IntakeType"/>
+    </entity>
+    <entity name="IntakeType" representedClassName="IntakeType" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="waterPercentage" attributeType="Integer 16" minValueString="0" maxValueString="100" defaultValueString="1" usesScalarValueType="YES"/>
+        <relationship name="usages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IntakeRecord" inverseName="types" inverseEntity="IntakeRecord"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="IntakeRecord" positionX="403.75146484375" positionY="86.61068725585938" width="128" height="103"/>
+        <element name="IntakeType" positionX="-54" positionY="18" width="128" height="89"/>
     </elements>
 </model>

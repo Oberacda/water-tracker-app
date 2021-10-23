@@ -7,6 +7,7 @@
 
 import CoreData
 
+
 struct PersistenceController {
     static let shared = PersistenceController()
 
@@ -14,8 +15,9 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let intakeType = IntakeType(context: viewContext)
+            intakeType.name = "Water"
+            intakeType.waterPercentage = 100
         }
         do {
             try viewContext.save()

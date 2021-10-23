@@ -11,19 +11,21 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @FetchRequest(entity: IntakeType.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \IntakeType.name, ascending: true)
+    ], animation: .default)
+    private var items: FetchedResults<IntakeType>
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text(item.id!.uuidString);
+                        Text(item.name!);
+                        Text(String(item.waterPercentage));
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.name!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -44,9 +46,10 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
+            let newItem = IntakeType(context: viewContext)
+            newItem.id = UUID()
+            newItem.name = "Test"
+            newItem.waterPercentage = 99
             do {
                 try viewContext.save()
             } catch {
@@ -73,13 +76,6 @@ struct ContentView: View {
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
