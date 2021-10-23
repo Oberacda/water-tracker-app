@@ -20,17 +20,18 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Dependencies
         run: |
+          gem env
           gem install xcpretty
           pod install --repo-update
       - name: Clean
         run: |
-          xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace
+          xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace | xcpretty && exit ${PIPESTATUS[0]}
       - name: Build
         run: |
-          xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device"
+          xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | xcpretty && exit ${PIPESTATUS[0]}
       - name: Test
         run: |
-          xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device"
+          xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | xcpretty && exit ${PIPESTATUS[0]}
       - name: Analyze
         run: |
           xcodebuild analyze -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | xcpretty && exit ${PIPESTATUS[0]}
