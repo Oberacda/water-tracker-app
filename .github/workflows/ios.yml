@@ -23,14 +23,14 @@ jobs:
         run: |
           # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}'`
-          xcodebuild build-for-testing -scheme water_tracker -workspace water-tracker.xcworkspace  -destination "platform=$platform,name=$device"
+          xcodebuild build-for-testing -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=$platform,name=$device"
       - name: Test
         env:
           platform: ${{ 'iOS Simulator' }}
         run: |
           # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme water_tracker -workspace water-tracker.xcworkspace -destination "platform=$platform,name=$device"
+          xcodebuild test-without-building -scheme water-tracker -workspace water-tracker.xcworkspace -destination "platform=$platform,name=$device"
       - name: Analyze
         run: |
-          xcodebuild analyze -scheme water_tracker -workspace water-tracker.xcworkspace | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild analyze -scheme water-tracker -workspace water-tracker.xcworkspace | xcpretty && exit ${PIPESTATUS[0]}
