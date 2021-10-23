@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.4.4)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
+  - CocoaLumberjack/Core (3.7.2)
+  - CocoaLumberjack/Swift (3.7.2):
+    - CocoaLumberjack/Core
+
+DEPENDENCIES:
+  - Alamofire (~> 5.4.4)
+  - Charts
+  - CocoaLumberjack/Swift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Charts
+    - CocoaLumberjack
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
+
+PODFILE CHECKSUM: 004ab084e59c504b296fc70a8296887818995672
+
+COCOAPODS: 1.11.2
