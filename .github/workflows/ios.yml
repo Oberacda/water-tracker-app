@@ -25,13 +25,13 @@ jobs:
           pod install --repo-update
       - name: Clean
         run: |
-          xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
       - name: Build
         run: |
-          xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
       - name: Test
         run: |
-          xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
       - name: Analyze
         run: |
-          xcodebuild analyze -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild analyze -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
