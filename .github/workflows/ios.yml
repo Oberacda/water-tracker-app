@@ -22,16 +22,17 @@ jobs:
         run: |
           gem env
           gem install xcpretty
+          /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty --version
           pod install --repo-update
       - name: Clean
         run: |
-          xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
+          set -o pipefail && xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
       - name: Build
         run: |
-          xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
+          set -o pipefail && xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
       - name: Test
         run: |
-          xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
+          set -o pipefail && xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
       - name: Analyze
         run: |
-          xcodebuild analyze -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty && exit ${PIPESTATUS[0]}
+          set -o pipefail && xcodebuild analyze -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
