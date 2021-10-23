@@ -19,13 +19,13 @@ jobs:
           pod install --repo-update
       - name: Clean
         run: |
-          xcodebuild clean -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=iOS Simulator,name=iPhone 11"
+          xcodebuild clean -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
       - name: Build
         run: |
-          xcodebuild build-for-testing -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=iOS Simulator,name=iPhone 11"
+          xcodebuild build-for-testing -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
       - name: Test
         run: |
-          xcodebuild test-without-building -scheme water-tracker -workspace water-tracker.xcworkspace -destination "platform=iOS Simulator,name=iPhone 11"
+          xcodebuild test-without-building -scheme water-tracker -workspace water-tracker.xcworkspace -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
       - name: Analyze
         run: |
           xcodebuild analyze -scheme water-tracker -workspace water-tracker.xcworkspace | xcpretty && exit ${PIPESTATUS[0]}
