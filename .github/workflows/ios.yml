@@ -19,13 +19,21 @@ jobs:
           pod install --repo-update
       - name: Clean
         run: |
-          xcodebuild clean -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
+          xcodebuild clean -scheme water-tracker -workspace water-tracker.xcworkspace
       - name: Build
+        env:
+          platform: ${{ 'iOS Simulator' }}
         run: |
-          xcodebuild build-for-testing -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
+          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}'`
+          xcodebuild build-for-testing -scheme water-tracker -workspace water-tracker.xcworkspace  -destination "platform=$platform,name=$device"
       - name: Test
+        env:
+          platform: ${{ 'iOS Simulator' }}
         run: |
-          xcodebuild test-without-building -scheme water-tracker -workspace water-tracker.xcworkspace -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
+          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}'`
+          xcodebuild test-without-building -scheme water-tracker -workspace water-tracker.xcworkspace -destination "platform=$platform,name=$device"
       - name: Analyze
         run: |
           xcodebuild analyze -scheme water-tracker -workspace water-tracker.xcworkspace | xcpretty && exit ${PIPESTATUS[0]}
