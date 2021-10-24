@@ -29,10 +29,12 @@ jobs:
           set -o pipefail && xcodebuild clean -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
       - name: Build
         run: |
-          set -o pipefail && xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
+          set -o pipefail && xcodebuild build-for-testing -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" -enableCodeCoverage YES | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
       - name: Test
         run: |
-          set -o pipefail && xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
+          set -o pipefail && xcodebuild test-without-building -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" -enableCodeCoverage YES | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1.2.1
       - name: Analyze
         run: |
           set -o pipefail && xcodebuild analyze -scheme "$scheme" -workspace "$scheme".xcworkspace -destination "platform=$platform,name=$device" | /usr/local/lib/ruby/gems/2.7.0/bin/xcpretty
